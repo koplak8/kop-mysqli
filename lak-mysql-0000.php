@@ -25,7 +25,9 @@ class LAK_MYSQL{
 	function query($params_string){
 		$this->LAK_TMP = $this->LAK_MYSQL_0000_CON->query($params_string);
 		$this->LAK_MYSQL_0000_DATASET['res'] = [$this->LAK_TMP];
-		$this->LAK_MYSQL_0000_DATASET['data'] = [$this->LAK_TMP -> fetch_all(MYSQLI_ASSOC)];
+		if(is_object($this->LAK_TMP)){
+			$this->LAK_MYSQL_0000_DATASET['data'] = [$this->LAK_TMP -> fetch_all(MYSQLI_ASSOC)];
+		}
 		$this->LAK_TMP = null;
 		return $this->LAK_MYSQL_0000_DATASET;
 	}
